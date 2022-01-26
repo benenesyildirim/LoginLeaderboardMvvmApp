@@ -17,6 +17,19 @@
         android:paddingTop="100dp"
         android:layout_height="match_parent">
 
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/loading_animation_register"
+            style="@style/SpinKitView.Small.Wave"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/blue_700" />
+
         <EditText
             android:id="@+id/register_nickname_et"
             android:layout_width="match_parent"

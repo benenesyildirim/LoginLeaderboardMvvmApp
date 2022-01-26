@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
@@ -54,19 +55,23 @@ import dagger.hilt.android.AndroidEntryPoint
     }
 
     private fun observeList() {
+        val loadingAnimation = binding.loadingAnimationLeaderboard
         with(viewModel) {
             leaderboardLiveData.observe(viewLifecycleOwner, { state ->
                 when (state) {
                     is Resource.Loading -> {
                         Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = VISIBLE
                     }
                     is Resource.Success -> {
                         binding.leaderboardRv.adapter = LeaderboardAdapter(state.data!!) {
                             showUserDetailDialog(it)
                         }
+                        loadingAnimation.visibility = GONE
                     }
                     is Resource.Error -> {
                         Toast.makeText(context, state.message ?: "Something went wrong...", Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = GONE
                     }
                 }
             })

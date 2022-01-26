@@ -4,6 +4,8 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
@@ -56,19 +58,21 @@ class RegisterFragment : Fragment() {
     }
 
     private fun observeRegistration() {
+        val loadingAnimation = binding.loadingAnimationRegister
         with(viewModel) {
             registerLiveData.observe(viewLifecycleOwner, { state ->
                 when (state) {
                     is Resource.Loading -> { //TODO Güzel bi animasyon yapıştır.
-                        Toast.makeText(context, "User creating...", Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = VISIBLE
                     }
                     is Resource.Success -> {
-                        Toast.makeText(context, state.message ?: "Success", Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = GONE
 
                         Navigation.findNavController(requireActivity() as Activity, R.id.nav_host_fragment).popBackStack()
                     }
                     is Resource.Error -> {
                         Toast.makeText(context, state.message ?: "Fail", Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = GONE
                     }
                 }
             })

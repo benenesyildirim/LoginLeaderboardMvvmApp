@@ -12,19 +12,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/home_background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/home_background">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/loading_animation_home"
+            style="@style/SpinKitView.Small.Wave"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/blue_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/username_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
+            android:fontFamily="monospace"
             android:gravity="center"
             android:text="@{user.nickName}"
-            android:textSize="35sp"
-            android:fontFamily="monospace"
             android:textColor="@color/black"
+            android:textSize="35sp"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="User 1" />
 
@@ -37,31 +49,31 @@
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/point_tv"
-            app:layout_constraintTop_toBottomOf="@+id/username_tv"/>
+            app:layout_constraintTop_toBottomOf="@+id/username_tv" />
 
         <TextView
             android:id="@+id/point_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:textStyle="bold"
             android:gravity="center"
             android:text="@{String.valueOf(user.point)}"
             android:textSize="35sp"
-            app:layout_constraintStart_toEndOf="@+id/increase_btn"
-            app:layout_constraintEnd_toStartOf="@+id/decrease_btn"
-            app:layout_constraintTop_toBottomOf="@+id/username_tv"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/increase_btn"
+            app:layout_constraintEnd_toStartOf="@+id/decrease_btn"
+            app:layout_constraintStart_toEndOf="@+id/increase_btn"
+            app:layout_constraintTop_toBottomOf="@+id/username_tv"
             tools:text="11" />
 
         <Button
             android:id="@+id/decrease_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:text="-"
             android:textSize="40sp"
             android:textStyle="bold"
-            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toStartOf="@+id/point_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/username_tv" />
@@ -72,9 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:src="@drawable/leaderboard"
-            app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/go_to_register_btn"
@@ -82,8 +94,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:src="@drawable/register"
-            app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

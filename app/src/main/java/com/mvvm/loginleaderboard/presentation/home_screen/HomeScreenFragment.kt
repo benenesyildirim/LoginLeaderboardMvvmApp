@@ -4,11 +4,14 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.github.ybq.android.spinkit.SpinKitView
 import com.mvvm.loginleaderboard.R
 import com.mvvm.loginleaderboard.common.Constants.NICKNAME
 import com.mvvm.loginleaderboard.common.Constants.POINT
@@ -21,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeScreenFragment : Fragment() {
     private lateinit var binding: FragmentHomeScreenBinding
     private val viewModel: HomeViewModel by viewModels()
+    private lateinit var loadingAnimation: SpinKitView
 
     private var user: User? = null
 
@@ -28,21 +32,21 @@ class HomeScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeScreenBinding.inflate(layoutInflater)
+        loadingAnimation = binding.loadingAnimationHome
 
         if (viewModel.getUserFirestore() != null) {
             viewModel.getUserFirestore()!!.addOnSuccessListener {
                 user = User(nickName = it.data?.get(NICKNAME).toString(), point = Integer.parseInt(it.data?.get(POINT).toString()))
 
                 if (user == null) {
-                    Toast.makeText(context, getString(R.string.not_logged_user_forwarding), Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(requireActivity() as Activity, R.id.nav_host_fragment).navigate(R.id.action_homeScreenFragment_to_registerFragment)
+                    userCantFindNavigation()
                 } else {
                     binding.user = user
+                    loadingAnimation.visibility = GONE
                 }
             }
         } else {
-            Toast.makeText(context, getString(R.string.not_logged_user_forwarding), Toast.LENGTH_SHORT).show()
-            Navigation.findNavController(requireActivity() as Activity, R.id.nav_host_fragment).navigate(R.id.action_homeScreenFragment_to_registerFragment)
+            userCantFindNavigation()
         }
 
         setClickListeners()
@@ -50,6 +54,12 @@ class HomeScreenFragment : Fragment() {
         updateUser()
 
         return binding.root
+    }
+
+    private fun userCantFindNavigation() {
+        Toast.makeText(context, getString(R.string.not_logged_user_forwarding), Toast.LENGTH_SHORT).show()
+        Navigation.findNavController(requireActivity() as Activity, R.id.nav_host_fragment).navigate(R.id.action_homeScreenFragment_to_registerFragment)
+        loadingAnimation.visibility = GONE
     }
 
     private fun setClickListeners() {
@@ -91,13 +101,14 @@ class HomeScreenFragment : Fragment() {
             updateUserLiveData.observe(viewLifecycleOwner, { state ->
                 when (state) {
                     is Resource.Loading -> {
-                        Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = VISIBLE
                     }
                     is Resource.Success -> {
-                        Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = GONE
                     }
                     is Resource.Error -> {
                         Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        loadingAnimation.visibility = GONE
                     }
                 }
             })
