@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.mvvm.loginleaderboard.data.remote.dto.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/home_background"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/username_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:gravity="center"
+            android:text="@{user.nickName}"
+            android:textSize="35sp"
+            android:fontFamily="monospace"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="User 1" />
+
+        <Button
+            android:id="@+id/increase_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="+"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/point_tv"
+            app:layout_constraintTop_toBottomOf="@+id/username_tv"/>
+
+        <TextView
+            android:id="@+id/point_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="@{String.valueOf(user.point)}"
+            android:textSize="35sp"
+            app:layout_constraintStart_toEndOf="@+id/increase_btn"
+            app:layout_constraintEnd_toStartOf="@+id/decrease_btn"
+            app:layout_constraintTop_toBottomOf="@+id/username_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/increase_btn"
+            tools:text="11" />
+
+        <Button
+            android:id="@+id/decrease_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/point_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_tv" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/go_to_leaderboard_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/leaderboard"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/go_to_register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/register"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

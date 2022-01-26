@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.mvvm.loginleaderboard.data.remote.dto.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/register_background"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:paddingTop="100dp"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/register_nickname_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:drawableStart="@drawable/user_registration"
+            android:drawablePadding="10dp"
+            android:hint="@string/nickname"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/create_user_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:layout_marginTop="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_nickname_et" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

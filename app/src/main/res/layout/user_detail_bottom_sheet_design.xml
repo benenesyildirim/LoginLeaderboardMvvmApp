@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/username_header_tv"
+        style="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bottom_sheet_username_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="excalibur"
+        app:layout_constraintBottom_toBottomOf="@+id/username_header_tv"
+        app:layout_constraintStart_toEndOf="@+id/username_header_tv"
+        app:layout_constraintTop_toTopOf="@+id/username_header_tv" />
+
+    <TextView
+        android:id="@+id/point_header_tv"
+        style="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="point: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_header_tv" />
+
+    <TextView
+        android:id="@+id/bottom_sheet_point_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123"
+        app:layout_constraintBottom_toBottomOf="@id/point_header_tv"
+        app:layout_constraintStart_toEndOf="@+id/point_header_tv"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_username_tv"
+        app:layout_constraintTop_toTopOf="@+id/point_header_tv" />
+
+    <TextView
+        android:id="@+id/unique_id_header_tv"
+        style="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="unique Id: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point_header_tv" />
+
+    <TextView
+        android:id="@+id/bottom_sheet_unique_id_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=".asfadu09ıodsiş.adfaıdoklgfsadfaıdoklgfsadfaıdoklgfs"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/unique_id_header_tv"
+        app:layout_constraintStart_toEndOf="@+id/unique_id_header_tv"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_point_tv"
+        app:layout_constraintTop_toTopOf="@id/unique_id_header_tv" />
+
+    <TextView
+        android:id="@+id/token_header_tv"
+        style="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="token: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unique_id_header_tv" />
+
+    <TextView
+        android:id="@+id/bottom_sheet_token_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:maxLength="50"
+        android:layout_marginStart="10dp"
+        android:text="avyuoıajkdsughvaıjdfquhdjaso.asfadu09ıodsiş.adfaıdoklgfs"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/token_header_tv"
+        app:layout_constraintStart_toEndOf="@+id/token_header_tv"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_unique_id_tv"
+        app:layout_constraintTop_toTopOf="@id/token_header_tv" />
+</androidx.constraintlayout.widget.ConstraintLayout>
